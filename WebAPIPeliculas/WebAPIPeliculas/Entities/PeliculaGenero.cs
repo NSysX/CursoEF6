@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace WebAPIPeliculas.Entities
+﻿namespace WebAPIPeliculas.Entities
 {
     public class PeliculaGenero
     {
-        public int Id { get; set; }
         public int IdPelicula { get; set; }
         public int IdGenero { get; set; }
 

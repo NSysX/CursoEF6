@@ -7,7 +7,7 @@ namespace WebAPIPeliculas.Entities.ConfiguracionesApiFluent
     {
         public void Configure(EntityTypeBuilder<PeliculaGenero> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => new { x.IdPelicula, x.IdGenero});
 
             builder.ToTable("PeliculaGenero").HasComment("Relacion de muchos a muchos entre genero y pelicula");
 
@@ -22,14 +22,14 @@ namespace WebAPIPeliculas.Entities.ConfiguracionesApiFluent
             builder.HasOne(pg => pg.Pelicula)
                 .WithMany(p => p.Generos)
                 .HasForeignKey(pg => pg.IdPelicula)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Fk_GeneroPelicula_Pelicula");
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("Fk_PeliculaGenero_Pelicula");
 
             builder.HasOne(pg => pg.Genero)
                 .WithMany(g => g.Peliculas)
                 .HasForeignKey(pg => pg.IdGenero)
-                .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("Fk_GeneroPelicula_Genero");
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("Fk_PeliculaGenero_Genero");
 
         }
     }

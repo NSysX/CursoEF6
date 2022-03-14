@@ -18,7 +18,8 @@ namespace WebAPIPeliculas.Contexts
         public DbSet<CineOferta> CineOferta { get; set; }
         public DbSet<SalaCine> SalaCine { get; set; }
         public DbSet<PeliculaActor> PeliculaActor { get; set; }
-        public DbSet<PeliculaGenero> PeliculaGenro { get; set; }
+        public DbSet<PeliculaGenero> PeliculaGenero { get; set; }
+        public DbSet<PeliculaSalaCine> PeliculaSalaCines { get; set; }
 
         // aqui se configura el API FLuent
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,7 +28,8 @@ namespace WebAPIPeliculas.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             // para insertar el seeding
-           SeedModuloConsulta.Seed(modelBuilder);
+            //SeedModuloConsulta.Seed(modelBuilder);
+            Seed2.InsertaSeed2(modelBuilder);
         }
     }
 }

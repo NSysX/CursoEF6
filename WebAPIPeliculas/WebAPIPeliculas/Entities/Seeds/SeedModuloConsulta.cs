@@ -113,13 +113,12 @@ namespace WebAPIPeliculas.Entities.Seeds
                 FechaEstreno = new DateTime(2012, 4, 11),
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Avengers_%282012_film%29_poster.jpg",
             };
+            
+            //----------------------------------------------------
 
             var entidadPeliculaGenero = "PeliculaGenero";
             var generoIdPropiedad = "GeneroId";
             var peliculaIdPropiedad = "PeliculaId";
-
-            var entidadSalaDeCinePelicula = "PeliculaSalaDeCine";
-            var salaDeCineIdPropiedad = "SalasDeCineId";
 
             modelBuilder.Entity(entidadPeliculaGenero).HasData(
                 new Dictionary<string, object> { [generoIdPropiedad] = acción.Id, [peliculaIdPropiedad] = avengers.Id },
@@ -184,6 +183,9 @@ namespace WebAPIPeliculas.Entities.Seeds
               new Dictionary<string, object> { [generoIdPropiedad] = drama.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id }
           );
 
+            var entidadSalaDeCinePelicula = "PeliculaSalaDeCine";
+            var salaDeCineIdPropiedad = "SalasDeCineId";
+
             modelBuilder.Entity(entidadSalaDeCinePelicula).HasData(
              new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DSambil.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
              new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine3DSambil.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
@@ -197,56 +199,56 @@ namespace WebAPIPeliculas.Entities.Seeds
 
             var keanuReevesMatrix = new PeliculaActor
             {
-                ActorId = keanuReeves.Id,
-                PeliculaId = theMatrixResurrections.Id,
+                IdActor = keanuReeves.Id,
+                IdPelicula = theMatrixResurrections.Id,
                 Orden = 1,
                 Personaje = "Neo"
             };
 
             var avengersChrisEvans = new PeliculaActor
             {
-                ActorId = chrisEvans.Id,
-                PeliculaId = avengers.Id,
+                IdActor = chrisEvans.Id,
+                IdPelicula = avengers.Id,
                 Orden = 1,
                 Personaje = "Capitán América"
             };
 
             var avengersRobertDowney = new PeliculaActor
             {
-                ActorId = robertDowney.Id,
-                PeliculaId = avengers.Id,
+                IdActor = robertDowney.Id,
+                IdPelicula = avengers.Id,
                 Orden = 2,
                 Personaje = "Iron Man"
             };
 
             var avengersScarlettJohansson = new PeliculaActor
             {
-                ActorId = scarlettJohansson.Id,
-                PeliculaId = avengers.Id,
+                IdActor = scarlettJohansson.Id,
+                IdPelicula = avengers.Id,
                 Orden = 3,
                 Personaje = "Black Widow"
             };
 
             var tomHollandFFH = new PeliculaActor
             {
-                ActorId = tomHolland.Id,
-                PeliculaId = farFromHome.Id,
+                IdActor = tomHolland.Id,
+                IdPelicula = farFromHome.Id,
                 Orden = 1,
                 Personaje = "Peter Parker"
             };
 
             var tomHollandNWH = new PeliculaActor
             {
-                ActorId = tomHolland.Id,
-                PeliculaId = noWayHome.Id,
+                IdActor = tomHolland.Id,
+                IdPelicula = noWayHome.Id,
                 Orden = 1,
                 Personaje = "Peter Parker"
             };
 
             var samuelJacksonFFH = new PeliculaActor
             {
-                ActorId = samuelJackson.Id,
-                PeliculaId = farFromHome.Id,
+                IdActor = samuelJackson.Id,
+                IdPelicula = farFromHome.Id,
                 Orden = 2,
                 Personaje = "Samuel L. Jackson"
             };
