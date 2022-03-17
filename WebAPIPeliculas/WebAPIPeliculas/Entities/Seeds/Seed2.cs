@@ -44,6 +44,7 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 220,
                 TipoSalaCine = TipoSalaCine.DosDimensiones
             };
+
             var salaDeCine3DAgora = new SalaCine()
             {
                 Id = 2,
@@ -59,6 +60,7 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 200,
                 TipoSalaCine = TipoSalaCine.DosDimensiones
             };
+
             var salaDeCine3DSambil = new SalaCine()
             {
                 Id = 4,
@@ -66,7 +68,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 290,
                 TipoSalaCine = TipoSalaCine.TresDimensiones
             };
-
 
             var salaDeCine2DMegacentro = new SalaCine()
             {
@@ -114,18 +115,43 @@ namespace WebAPIPeliculas.Entities.Seeds
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Avengers_%282012_film%29_poster.jpg",
             };
 
-            //var entidadPeliculaGenero = "PeliculaGenero";
-            //var generoIdPropiedad = "IdGenero";
-            //var peliculaIdPropiedad = "IdPelicula";
+            var coco = new Pelicula()
+            {
+                Id = 2,
+                Titulo = "Coco",
+                EnCartelera = false,
+                FechaEstreno = new DateTime(2017, 11, 22),
+                PosterURL = "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg"
+            };
 
-            //modelBuilder.Entity(entidadPeliculaGenero).HasData(
-            //    new Dictionary<string, int> { [peliculaIdPropiedad] = avengers.Id, [generoIdPropiedad] = acción.Id },
-            //    new Dictionary<string, int> { [peliculaIdPropiedad] = avengers.Id, [generoIdPropiedad] = cienciaFicción.Id }
-            //);
+            var noWayHome = new Pelicula()
+            {
+                Id = 3,
+                Titulo = "Spider-Man: No way home",
+                EnCartelera = false,
+                FechaEstreno = new DateTime(2021, 12, 17),
+                PosterURL = "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg"
+            };
 
+            var farFromHome = new Pelicula()
+            {
+                Id = 4,
+                Titulo = "Spider-Man: Far From Home",
+                EnCartelera = false,
+                FechaEstreno = new DateTime(2019, 7, 2),
+                PosterURL = "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg"
+            };
 
-            PeliculaGenero peliculaGenero = new PeliculaGenero() { IdPelicula = avengers.Id, IdGenero = acción.Id };
-            modelBuilder.Entity<PeliculaGenero>().HasData(peliculaGenero);
+            var theMatrixResurrections = new Pelicula()
+            {
+                Id = 5,
+                Titulo = "The Matrix Resurrections",
+                EnCartelera = true,
+                FechaEstreno = DateTime.Today,
+                PosterURL = "https://upload.wikimedia.org/wikipedia/en/5/50/The_Matrix_Resurrections.jpg",
+            };
+
+            modelBuilder.Entity<Pelicula>().HasData(avengers, coco, noWayHome, farFromHome, theMatrixResurrections);
         }
     }
 }

@@ -28,6 +28,7 @@ namespace WebAPIPeliculas.Entities.Seeds
 
             modelBuilder.Entity<Actor>().HasData(tomHolland, samuelJackson,
                             robertDowney, chrisEvans, laRoca, auliCravalho, scarlettJohansson, keanuReeves);
+
             var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
 
             var agora = new Cine() { Id = 1, Nombre = "Agora Mall", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.9388777, 18.4839233)) };
@@ -35,7 +36,19 @@ namespace WebAPIPeliculas.Entities.Seeds
             var megacentro = new Cine() { Id = 3, Nombre = "Megacentro", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.856309, 18.506662)) };
             var acropolis = new Cine() { Id = 4, Nombre = "Acropolis", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-69.939248, 18.469649)) };
 
+            var refa1 = new Refaccionaria { Id = 1, Nombre = "Auto Partes LALO I", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-97.830609, 25.666709)) };
+
+            var refa2 = new Refaccionaria { Id = 2, Nombre = "Auto Partes LALO II", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-97.808840, 25.672184)) };
+
+            var refa3 = new Refaccionaria { Id = 3, Nombre = "Auto Partes LALO III", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-97.806409, 25.666665)) };
+
+            var refa4 = new Refaccionaria { Id = 4, Nombre = "Auto Partes LALO IV", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-97.815993, 25.661466)) };
+
+            var refa5 = new Refaccionaria { Id = 5, Nombre = "Auto Partes LALO V", Ubicacion = geometryFactory.CreatePoint(new Coordinate(-97.513383, 25.823908)) };
+
             var agoraCineOferta = new CineOferta { Id = 1, CineId = agora.Id, FechaInicio = DateTime.Today, FechaFin = DateTime.Today.AddDays(7), PorcentajeDescuento = 10 };
+
+            modelBuilder.Entity<Refaccionaria>().HasData(refa1, refa2, refa3, refa4, refa5);
 
             var salaDeCine2DAgora = new SalaCine()
             {
@@ -44,6 +57,7 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 220,
                 TipoSalaCine = TipoSalaCine.DosDimensiones
             };
+
             var salaDeCine3DAgora = new SalaCine()
             {
                 Id = 2,
@@ -59,6 +73,7 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 200,
                 TipoSalaCine = TipoSalaCine.DosDimensiones
             };
+
             var salaDeCine3DSambil = new SalaCine()
             {
                 Id = 4,
@@ -66,7 +81,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Precio = 290,
                 TipoSalaCine = TipoSalaCine.TresDimensiones
             };
-
 
             var salaDeCine2DMegacentro = new SalaCine()
             {
@@ -113,17 +127,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 FechaEstreno = new DateTime(2012, 4, 11),
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/8/8a/The_Avengers_%282012_film%29_poster.jpg",
             };
-            
-            //----------------------------------------------------
-
-            var entidadPeliculaGenero = "PeliculaGenero";
-            var generoIdPropiedad = "GeneroId";
-            var peliculaIdPropiedad = "PeliculaId";
-
-            modelBuilder.Entity(entidadPeliculaGenero).HasData(
-                new Dictionary<string, object> { [generoIdPropiedad] = acción.Id, [peliculaIdPropiedad] = avengers.Id },
-                new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Id, [peliculaIdPropiedad] = avengers.Id }
-            );
 
             var coco = new Pelicula()
             {
@@ -134,10 +137,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg"
             };
 
-            modelBuilder.Entity(entidadPeliculaGenero).HasData(
-               new Dictionary<string, object> { [generoIdPropiedad] = animación.Id, [peliculaIdPropiedad] = coco.Id }
-           );
-
             var noWayHome = new Pelicula()
             {
                 Id = 3,
@@ -146,12 +145,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 FechaEstreno = new DateTime(2021, 12, 17),
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg"
             };
-
-            modelBuilder.Entity(entidadPeliculaGenero).HasData(
-               new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Id, [peliculaIdPropiedad] = noWayHome.Id },
-               new Dictionary<string, object> { [generoIdPropiedad] = acción.Id, [peliculaIdPropiedad] = noWayHome.Id },
-               new Dictionary<string, object> { [generoIdPropiedad] = comedia.Id, [peliculaIdPropiedad] = noWayHome.Id }
-           );
 
             var farFromHome = new Pelicula()
             {
@@ -162,12 +155,6 @@ namespace WebAPIPeliculas.Entities.Seeds
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/0/00/Spider-Man_No_Way_Home_poster.jpg"
             };
 
-            modelBuilder.Entity(entidadPeliculaGenero).HasData(
-               new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Id, [peliculaIdPropiedad] = farFromHome.Id },
-               new Dictionary<string, object> { [generoIdPropiedad] = acción.Id, [peliculaIdPropiedad] = farFromHome.Id },
-               new Dictionary<string, object> { [generoIdPropiedad] = comedia.Id, [peliculaIdPropiedad] = farFromHome.Id }
-           );
-
             var theMatrixResurrections = new Pelicula()
             {
                 Id = 5,
@@ -177,25 +164,68 @@ namespace WebAPIPeliculas.Entities.Seeds
                 PosterURL = "https://upload.wikimedia.org/wikipedia/en/5/50/The_Matrix_Resurrections.jpg",
             };
 
-            modelBuilder.Entity(entidadPeliculaGenero).HasData(
-              new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-              new Dictionary<string, object> { [generoIdPropiedad] = acción.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-              new Dictionary<string, object> { [generoIdPropiedad] = drama.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id }
-          );
+            modelBuilder.Entity<Pelicula>().HasData(avengers, coco, noWayHome, farFromHome, theMatrixResurrections);
 
-            var entidadSalaDeCinePelicula = "PeliculaSalaDeCine";
-            var salaDeCineIdPropiedad = "SalasDeCineId";
+            // ----  hasta aqudi debe de agregar las peliculas
+            //----------------------------------------------------
 
-            modelBuilder.Entity(entidadSalaDeCinePelicula).HasData(
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DSambil.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine3DSambil.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DAgora.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine3DAgora.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine3DMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
-             new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCineCXCMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id }
-         );
+            List<PeliculaGenero> lstPeliculaGenero = new();
 
+            var peliculaGeneroAvengers = new PeliculaGenero() { IdPelicula = avengers.Id, IdGenero = acción.Id };
+            var peliculaGenero2Avengers = new PeliculaGenero() { IdPelicula = avengers.Id, IdGenero = cienciaFicción.Id };
+
+            lstPeliculaGenero.Add(peliculaGeneroAvengers);
+            lstPeliculaGenero.Add(peliculaGenero2Avengers);
+
+            var pgnoWayHome = new PeliculaGenero() { IdPelicula = noWayHome.Id, IdGenero = cienciaFicción.Id };
+            var pgnoWayHome1 = new PeliculaGenero() { IdPelicula = noWayHome.Id, IdGenero = acción.Id };
+            var pgnoWayHome2 = new PeliculaGenero() { IdPelicula = noWayHome.Id, IdGenero = comedia.Id };
+
+            lstPeliculaGenero.Add(pgnoWayHome);
+            lstPeliculaGenero.Add(pgnoWayHome1);
+            lstPeliculaGenero.Add(pgnoWayHome2);
+
+            var pgFarFromHome = new PeliculaGenero() { IdPelicula = farFromHome.Id, IdGenero = cienciaFicción.Id };
+            var pgFarFromHome2 = new PeliculaGenero() { IdPelicula = farFromHome.Id, IdGenero = acción.Id };
+            var pgFarFromHome3 = new PeliculaGenero() { IdPelicula = farFromHome.Id, IdGenero = comedia.Id };
+
+            lstPeliculaGenero.Add(pgFarFromHome);
+            lstPeliculaGenero.Add(pgFarFromHome2);
+            lstPeliculaGenero.Add(pgFarFromHome3);
+
+            var pgCoco = new PeliculaGenero() { IdPelicula = coco.Id, IdGenero = animación.Id };
+
+            lstPeliculaGenero.Add(pgCoco);
+
+            var pgMatrix = new PeliculaGenero() { IdPelicula = theMatrixResurrections.Id, IdGenero = cienciaFicción.Id };
+            var pgMatrix2 = new PeliculaGenero() { IdPelicula = theMatrixResurrections.Id, IdGenero = acción.Id };
+            var pgMatrix3 = new PeliculaGenero() { IdPelicula = theMatrixResurrections.Id, IdGenero = drama.Id };
+
+            lstPeliculaGenero.Add(pgMatrix);
+            lstPeliculaGenero.Add(pgMatrix2);
+            lstPeliculaGenero.Add(pgMatrix3);
+
+            modelBuilder.Entity<PeliculaGenero>().HasData(lstPeliculaGenero);
+
+            List<PeliculaSalaCine> lstPeliculaSalaCine = new();
+
+            var matrixSalaCine  = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine2DSambil.Id };
+            var matrixSalaCine1 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine3DSambil.Id };
+            var matrixSalaCine2 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine2DAgora.Id };
+            var matrixSalaCine3 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine3DAgora.Id };
+            var matrixSalaCine4 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine2DMegacentro.Id };
+            var matrixSalaCine5 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCine3DMegacentro.Id };
+            var matrixSalaCine6 = new PeliculaSalaCine() { IdPelicula = theMatrixResurrections.Id, IdSalaCine = salaDeCineCXCMegacentro.Id };
+
+            lstPeliculaSalaCine.Add(matrixSalaCine);
+            lstPeliculaSalaCine.Add(matrixSalaCine1);
+            lstPeliculaSalaCine.Add(matrixSalaCine2);
+            lstPeliculaSalaCine.Add(matrixSalaCine3);
+            lstPeliculaSalaCine.Add(matrixSalaCine4);
+            lstPeliculaSalaCine.Add(matrixSalaCine5);
+            lstPeliculaSalaCine.Add(matrixSalaCine6);
+
+            modelBuilder.Entity<PeliculaSalaCine>().HasData(lstPeliculaSalaCine);
 
             var keanuReevesMatrix = new PeliculaActor
             {
@@ -253,9 +283,8 @@ namespace WebAPIPeliculas.Entities.Seeds
                 Personaje = "Samuel L. Jackson"
             };
 
-            modelBuilder.Entity<Pelicula>().HasData(avengers, coco, noWayHome, farFromHome, theMatrixResurrections);
-            modelBuilder.Entity<PeliculaActor>().HasData(samuelJacksonFFH, tomHollandFFH, tomHollandNWH, avengersRobertDowney, avengersScarlettJohansson,
-                avengersChrisEvans, keanuReevesMatrix);
+            
+            modelBuilder.Entity<PeliculaActor>().HasData(samuelJacksonFFH, tomHollandFFH, tomHollandNWH, avengersRobertDowney,        avengersScarlettJohansson,avengersChrisEvans, keanuReevesMatrix);
 
         }
     }

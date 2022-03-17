@@ -23,7 +23,7 @@ namespace WebAPIPeliculas.Entities.ConfiguracionesApiFluent
 
             // los foreingkey
             builder.HasOne(ps => ps.Pelicula)
-                .WithMany(p => p.PeliculaSalaCines)
+                .WithMany(p => p.PeliculaSalaCine)
                 .HasForeignKey(ps => ps.IdPelicula)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Fk_PeliculaSalaCine_Pelicula");

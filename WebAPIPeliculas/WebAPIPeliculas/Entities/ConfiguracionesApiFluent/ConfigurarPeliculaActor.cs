@@ -8,7 +8,7 @@ namespace WebAPIPeliculas.Entities.ConfiguracionesApiFluent
     {
         public void Configure(EntityTypeBuilder<PeliculaActor> builder)
         {
-            builder.HasKey(x => x.Id);
+            builder.HasKey(x => new { x.IdPelicula, x.IdActor });
 
             builder.ToTable("PeliculaActor").HasComment("Relacion de actores y peliculas");
 
@@ -33,7 +33,7 @@ namespace WebAPIPeliculas.Entities.ConfiguracionesApiFluent
                 .HasComment("Orden de importancia en la pelicula");
 
             builder.HasOne(pa => pa.Pelicula) // tiene un campo de objeto Pelicula
-                .WithMany(p => p.Actores) // donde hace el enlace 
+                .WithMany(p => p.PeliculaActores) // donde hace el enlace 
                 .HasForeignKey(pa => pa.IdPelicula) // y esta es la llave
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("Fk_PeliculaActor_Pelicula");
